@@ -1,14 +1,33 @@
+<#
+.SYNOPSIS
+    A lightning-fast project navigator for terminal-centric workflows.
 
-# Navigator.ps1
+.DESCRIPTION
+    Maps directories to alphabetical keys, prioritizing home-row keys (f, g, h, i, j, k) 
+    for frequently used projects.
+.PARAMETER Selection
+    The key mapped to a specific project. If empty, displays the navigation menu.
+
+.EXAMPLE
+    ./Navigator.ps1 f
+    Jumps to the first special project.
+    tip: use profile function like `goto` or `g`
+.NOTES
+    Author: Priyanshu Farkonde (gh: priyanshuf11)
+    Version: 1.0
+    Requirements: A terminal with Nerd Font support (e.g., Cascadia Code NF, JetBrainsMono NF).
+#>
+     
 param ([string]$Selection)
 
-# The projects must be inside a folder say Projects\ , at a depth of 1, otherwise it will not work
+#----Configuration----
+# Root folder(s) containing your repositories
 $Roots = @(
     # "$env:USERPROFILE\Projects",
 )
 
-# special projects can be moved to more ergonomic position to reach faster
-# Your special consecutive home-row projects
+# priority projects can be moved to more ergonomic position to reach faster
+# priority projects mapped to 'f,g,h,i,j,k'
 $Specials = @(
     # "ProjectXYZ",
 )
@@ -49,7 +68,7 @@ foreach ($ascii in 97..122) {
     }
 }
 
-$glyph = [char]::ConvertFromUtf32(0xF011E) # Nerd Font Folder Icon
+$glyph = [char]::ConvertFromUtf32(0xF07B) # Nerd Font Folder Icon
 
 # --- LOGIC ---
 
@@ -90,7 +109,7 @@ else {
             $Target = Join-Path $Root $ProjName
             if (Test-Path $Target) {
                 Set-Location $Target
-                $glyph = [char]::ConvertFromUtf32(0xF011E)
+                $glyph = [char]::ConvertFromUtf32(0xF07B)
                 Write-Host "$glyph $ProjName" -ForegroundColor Green
                 return
             }

@@ -55,6 +55,7 @@ $RootName = ""
 
 # MODE 1: GITHUB URL
 # Errror in API call, to be fixed in future
+# TODO : fix api problem
 if ($Target -match "^https?://github\.com/([^/]+)/([^/]+)") {
     $Owner = $Matches[1]
     $Repo  = $Matches[2].TrimEnd(".git")
