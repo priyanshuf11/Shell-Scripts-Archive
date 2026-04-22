@@ -3,8 +3,9 @@
     A lightning-fast project navigator for terminal-centric workflows.
 
 .DESCRIPTION
-    Maps directories to alphabetical keys, prioritizing home-row keys (f, g, h, i, j, k) 
-    for frequently used projects.
+    Scans configured project root folders, maps directories to alphabetical keys,
+    and allows instant navigation to projects from the terminal.
+    Frequently used projects can be pinned to home-row keys (f, g, h, i, j, k).
 .PARAMETER Selection
     The key mapped to a specific project. If empty, displays the navigation menu.
 
